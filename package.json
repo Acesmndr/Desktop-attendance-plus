@@ -1,0 +1,28 @@
+{
+  "name": "attendance-desktop-app",
+  "main": "index.html",
+  "description": "Desktop Version of attendance+ application",
+  "version": "0.1.0",
+  "keywords": [
+    "attendance",
+    "node-webkit"
+  ],
+  "window": {
+    "title": "Attendance+",
+    "icon": "aurora.png",
+    "toolbar": false,
+    "frame": false,
+    "width": 1024,
+    "height": 768,
+    "min_width": 400,
+    "min_height": 200,
+    "max_width": 1024,
+    "max_height": 768
+  },
+  "webkit": {
+    "plugin": true
+  },
+  "dependencies": {
+    "nedb": "^1.1.3"
+  }
+}

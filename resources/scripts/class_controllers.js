@@ -11,7 +11,8 @@ angular.module('classControllers',[])
                           a=scope.classlist;
                           scope.$apply();
                        });
-                       scope.tableClick=function(name){
+                       scope.tableClick=function(name,rollStart){
+                          localStorage.setItem('rollStart',rollStart);
                           localStorage.setItem('currentTable',name);
                           location.path('/table');
                        }

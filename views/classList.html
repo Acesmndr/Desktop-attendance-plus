@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="notice notice-info"  ng-repeat="class in classlist" ng-click="tableClick(class.name)">
+    <div class="notice notice-info"  ng-repeat="class in classlist" ng-click="tableClick(class.name,class.roll_start)">
         <strong>{{class.name}}</strong> {{class.roll_start}}
     </div>
     

@@ -17,13 +17,14 @@ angular.module('myControllers',[])
                     };
                     var Datastore = require('nedb'),
                     db3 = new Datastore({filename: "database/attendancedb", autoload: true});
-                    db3.find({"noc":"KEC BCT A"},function(error,data){
-                            console.log(data[0].atn.length);
+                    db3.find({"nameOfClass":localStorage.getItem("currentTable")},function(error,data){
+                            var rollStart=parseInt(localStorage.getItem("rollStart"))%100;
+                            console.log(data[0].attendance.length);
                             //console.log(data[0].atn[0]);
-                            for(var i=1;i<=(data[0]["atn"].length-1);i++){
+                            for(var i=1;i<=(data[0]["attendance"].length-1);i++){
                                   var b={};
-                                  b["x"]=i;
-                                  b["value"]=data[0].atn[i-1];
+                                  b["x"]=i+rollStart;
+                                  b["value"]=data[0].attendance[i-1];
                                   //console.log(i);
                                   $scope.data[i-1]=b;
                                   console.log($scope.data[i-1]);
@@ -36,32 +37,29 @@ angular.module('myControllers',[])
 .controller('tableCtrl', ['$scope', function (scope) {
                       var currentTable=localStorage.getItem('currentTable');
                       scope.table={
-                      date1:"Sep 4",
-                      date2:"Sep 5",
-                      date3:"Sep 6"
+                      date0:"Sep 6",
+                      date1:"Sep 5",
+                      date2:"Sep 4"
                     };
                     scope.addrow=function(){
-                      scope.rowCollection.push({roll:'68001',date1:"Present",total:5});
                       var Datastore = require('nedb'),
                       db3 = new Datastore({filename: "database/attendancedb", autoload: true});
                       db3.find({"nameOfClass":currentTable},function(error,data){
-                        a=data;
-                        /*console.log(data);
-                        a=data;*/
-                          console.log(data[0].attendance.length);
+                      a=data;
+                      console.log(data.length);
+                       var rollStart=parseInt(localStorage.getItem("rollStart"));
                           //console.log(data[0].atn[0]);
                           for(var i=1;i<=(data[0]["attendance"].length-1);i++){
-                                var b={
-                                  roll:i,
-                                  total:data[0].attendance[i-1]
+                                var b={};
+                                b.roll=i+rollStart;
+                                for(j=0;j<data.length;j++){
+                                  b["date"+j]=(data[j].attendance[i-1]==0)?"Present":"Absent";
                                 }
-                                scope.rowCollection.push(b);
-                                console.log(scope.rowCollection)
+                               scope.rowCollection.push(b);
+                                console.log(scope.rowCollection);
                           }
-                          scope.$apply();
+                        scope.$apply();
                         });
                     };
-                    scope.rowCollection = [
-                        {roll:'68001',date1:"Present",total:5}
-                    ];
+                    scope.rowCollection = [];
                     }]);

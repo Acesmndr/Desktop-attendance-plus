@@ -1,27 +1,13 @@
 <div class="container">
-    <div class="notice notice-success">
-        <strong>KEC BCT A 2068</strong> 28 Students
+    <div class="notice notice-info"  ng-repeat="class in classlist" ng-click="tableClick(class.name)">
+        <strong>{{class.name}}</strong> {{class.roll_start}}
     </div>
-    <div class="notice notice-danger">
-        <strong>Notice</strong> notice-danger
-    </div>  
-    <div class="notice notice-info">
-        <strong>Notice</strong> notice-info
-    </div>
-    <div class="notice notice-warning">
-        <strong>Notice</strong> notice-warning
-    </div>
-    <div class="notice notice-lg">
-        <strong>Big notice</strong> notice-lg
-    </div>
-    <div class="notice notice-sm">
-        <strong>Small notice</strong> notice-sm
-    </div>
+    
 </div>
-<form name="classInsert" ng-controller="formCtrl as fCt" ng-submit="fCt.addClass()" novalidate>
+<!--form name="classInsert" ng-controller="formCtrl as fCt" ng-submit="fCt.addClass()" novalidate>
     <input name="classname" ng-model="fCt.class.classname" required></input>
     <input name="classid" ng-model="fCt.class.id" required></input>
      <input name="rollstart" ng-model="fCt.class.rollstart" required></input>
      <input name="totalno" ng-model="fCt.class.totalno" required></input>
      <input type="submit" value="submit"></input>
- </form>
+ </form-->

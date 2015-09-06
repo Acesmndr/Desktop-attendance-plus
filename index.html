@@ -15,39 +15,13 @@
     -webkit-box-shadow: 0 5px 8px -6px rgba(0,0,0,.2);
        -moz-box-shadow: 0 5px 8px -6px rgba(0,0,0,.2);
             box-shadow: 0 5px 8px -6px rgba(0,0,0,.2);
-}
-.notice-sm {
-    padding: 10px;
-    font-size: 80%;
-}
-.notice-lg {
-    padding: 35px;
-    font-size: large;
-}
-.notice-success {
-    border-color: #80D651;
-}
-.notice-success>strong {
-    color: #80D651;
-}
+
 .notice-info {
     border-color: #45ABCD;
 }
 .notice-info>strong {
     color: #45ABCD;
-}
-.notice-warning {
-    border-color: #FEAF20;
-}
-.notice-warning>strong {
-    color: #FEAF20;
-}
-.notice-danger {
-    border-color: #d73814;
-}
-.notice-danger>strong {
-    color: #d73814;
-}
+
    </style>
     
   
@@ -56,12 +30,12 @@
     
     <!-- We'll also add some navigation: -->
     
-    <h1 class="bg-primary" style="padding:10px;padding-left:30px;margin:0px">Attendance</h1>
+    <h1 class="bg-primary" style="padding:10px;padding-left:30px;margin:0px" ng-model="title">Attendance</h1>
     <div class="btn-group" role="group" ng-controller="viewCtrl" style="padding:0;margin-top:0px">
-        <button class="btn btn-default btn-lg" ng-click="changeRoute('classList')" ng-disabled="menuSwitch()">My Class List <span class="glyphicon glyphicon-book"></span> </button>
+        <button class="btn btn-default btn-lg" ng-click="changeRoute('classList')" ng-enabled="menuSwitch()">My Class List <span class="glyphicon glyphicon-book"></span> </button>
         <button class="btn btn-default btn-lg" ng-click="changeRoute('table')" ng-disabled="menuSwitch()">Table <span class="glyphicon glyphicon-th-list"></span> </button>
          <button class="btn btn-default btn-lg" ng-click="changeRoute('bar')" ng-disabled="menuSwitch()">Bar Chart <span class="glyphicon glyphicon-signal"></span></button>
-         <button class="btn btn-default btn-lg" ng-click="changeRoute('bar')" ng-disabled="menuSwitch()">Sync <span class="glyphicon glyphicon-refresh"></span></button>
+         <button class="btn btn-default btn-lg" ng-click="changeRoute('sync')" ng-disabled="menuSwitch()">Sync <span class="glyphicon glyphicon-refresh"></span></button>
     </div>
     
     <ng-view></ng-view>

@@ -1,11 +1,12 @@
 // Load native UI library
+var a;
 var app=angular.module('myApp',['ngRoute','n3-line-chart','myControllers','classControllers'])
 .config(["$routeProvider",function(routeProvider) {
-  console.log(routeProvider);
+  //console.log(routeProvider);
   routeProvider.when('/',{
     templateUrl:'views/login.html',
     controller:'loginCtrl'  
-  }).when('/class',{
+  }).when('/class:message',{
     templateUrl:'views/classList.html',
     controller:'classCtrl'
   }).when('/bar',{
@@ -14,21 +15,25 @@ var app=angular.module('myApp',['ngRoute','n3-line-chart','myControllers','class
   }).when('/table',{
     templateUrl:'views/table.html',
     controller:'tableCtrl'
-  })
+  }).when('/sync',{
+    templateUrl:'views/sync.html',
+    controller:'syncCtrl'
+  }).otherwise({
+    templateUrl:'views/login.html',
+    controller:'loginCtrl'
+  });
 }])
 .run(function(){
             message=0;
+            a="asdfasdf";
             var Datastore = require('nedb')
             , db = new Datastore({ filename: 'aces', autoload: true});
-             var doc={ name: 'KEC BCT A 2068',description: 'This is the first class',set:1};
-            db.insert(doc, function () { });
-            db.find({ set: 1 }, function (err, docs) {
-                    for(i in docs){
-                        //console.log(docs[i]);
-                        //stories.push({'name':docs[i].name,'description':docs[i].description});
-                      }
-            });
-            function saveFile(name,data) {
+            // var doc={ name: 'KEC BCT A 2068',description: 'This is the first class',set:1};
+            //db.insert(doc, function () { });
+            /*db.find({ datatype:'userid' }, function (err, docs) {
+                    a=docs[0]['userid']
+            });*/
+            /*function saveFile(name,data) {
                 var chooser = document.querySelector(name);
                 chooser.addEventListener("change", function(evt) {
                 console.log(this.value); // get your file name
@@ -40,7 +45,7 @@ var app=angular.module('myApp',['ngRoute','n3-line-chart','myControllers','class
                     });
                 }, false);
             chooser.click();  
-            }
+            }*/
             var gui = require('nw.gui');
             var win = gui.Window.get();
             var menu = new gui.Menu({ 'type': 'menubar' });
@@ -74,4 +79,5 @@ var app=angular.module('myApp',['ngRoute','n3-line-chart','myControllers','class
     templateUrl:'views/bar.html'
   }
 });
+
 

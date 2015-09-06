@@ -1,10 +1,13 @@
 // Load native UI library
-var app=angular.module('myApp',['ngRoute','n3-line-chart','myControllers'])
-.config(["$routeProvider",function($routeProvider) {
-  console.log($routeProvider);
-  $routeProvider.when('/',{
-    templateUrl:'views/table.html',
-    controller:'tableCtrl'  
+var app=angular.module('myApp',['ngRoute','n3-line-chart','myControllers','classControllers'])
+.config(["$routeProvider",function(routeProvider) {
+  console.log(routeProvider);
+  routeProvider.when('/',{
+    templateUrl:'views/login.html',
+    controller:'loginCtrl'  
+  }).when('/class',{
+    templateUrl:'views/classList.html',
+    controller:'classCtrl'
   }).when('/bar',{
     templateUrl:'views/bar.html',
     controller:'barCtrl'
@@ -14,6 +17,36 @@ var app=angular.module('myApp',['ngRoute','n3-line-chart','myControllers'])
   })
 }])
 .run(function(){
+            var a={};
+            a.timestamp=4427530;
+            a.del=["KEC BCT","KEC Bel"];
+            a.data=[];
+            a.data.push("{'a':'b','c':'d'}");
+            message=0;
+            var Datastore = require('nedb')
+            , db = new Datastore({ filename: 'aces', autoload: true})
+            db2 = new Datastore({ filename: 'class', autoload: true});
+             var doc={ name: 'KEC BCT A 2068',description: 'This is the first class',set:1};
+            db.insert(doc, function () { });
+            db.find({ set: 1 }, function (err, docs) {
+                    for(i in docs){
+                        console.log(docs[i]);
+                        //stories.push({'name':docs[i].name,'description':docs[i].description});
+                      }
+            });
+            function saveFile(name,data) {
+                var chooser = document.querySelector(name);
+                chooser.addEventListener("change", function(evt) {
+                console.log(this.value); // get your file name
+                var fs = require('fs');// save it now
+                    fs.writeFile(this.value, data, function(err) {
+                        if(err) {
+                           alert("error"+err);
+                        }
+                    });
+                }, false);
+            chooser.click();  
+            }
             var gui = require('nw.gui');
             var win = gui.Window.get();
             var menu = new gui.Menu({ 'type': 'menubar' });

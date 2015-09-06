@@ -19,9 +19,9 @@
     </div>
 </div>
 <form name="classInsert" ng-controller="formCtrl as fCt" ng-submit="fCt.addClass()" novalidate>
-    <input name="classname" ng-model="classname" required></input>
-    <input name="classid" ng-model="classid" required></input>
-     <input name="rollstart" ng-model="rollstart" required></input>
-     <input name="totalno" ng-model="totalno" required></input>
+    <input name="classname" ng-model="fCt.class.classname" required></input>
+    <input name="classid" ng-model="fCt.class.id" required></input>
+     <input name="rollstart" ng-model="fCt.class.rollstart" required></input>
+     <input name="totalno" ng-model="fCt.class.totalno" required></input>
      <input type="submit" value="submit"></input>
  </form>

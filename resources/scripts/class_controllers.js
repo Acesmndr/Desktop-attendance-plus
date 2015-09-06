@@ -7,7 +7,7 @@ angular.module('classControllers',[])
 }).controller('formCtrl',['$scope','$http',function(scope,http){
 
 	var Datastore = require('nedb'),
-  db5 = new Datastore({filename: "acesList", autoload: true});
+  db5 = new Datastore({filename: "database/attendancedb", autoload: true});
 	//scope.class={};
   this.addClass=function(){
     console.log("class added");

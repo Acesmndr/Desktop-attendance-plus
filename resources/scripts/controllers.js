@@ -18,20 +18,20 @@ angular.module('myControllers',[])
   }*/
 })
 .controller('barCtrl', function($scope) {
-    $scope.data = [
-];
-for(var i=1;i<=44;i++){
+  $scope.data = [];
+  //var b={};
+  for(var i=1;i<=44;i++){
   var b={};
   b["x"]=i;
-  b["value"]=Math.floor((Math.random() * 40) + 1);
+  b["value"]=1;//Math.floor((Math.random() * 40) + 1);
   console.log(i);
   $scope.data.push(b);
-  console.log($scope.data);
-}
- $scope.options = {
+  //console.log($scope.data);
+  }
+                $scope.options = {
   axes:{
-  	 y: {type: 'linear',ticks: 10},
-  	 x: {type: 'linear',ticks: 5}
+     y: {type: 'linear',ticks: 10},
+     x: {type: 'linear',ticks: 50}
   },
   series: [
     {
@@ -42,12 +42,55 @@ for(var i=1;i<=44;i++){
     }
   ]
 };
+  var Datastore = require('nedb'),
+  db3 = new Datastore({filename: "database/attendancedb", autoload: true});
+  db3.find({"noc":"KEC BCT A"},function(error,data){
+          console.log(data[0].atn.length);
+          //console.log(data[0].atn[0]);
+          for(var i=1;i<=(data[0]["atn"].length-1);i++){
+                var b={};
+                b["x"]=i;
+                b["value"]=data[0].atn[i-1];
+                //console.log(i);
+                $scope.data[i-1]=b;
+                console.log($scope.data[i-1]);
+                //console.log($scope.data);
+          }
+          $scope.$apply();
+  console.log($scope.data);
+  
+ });
 })
 .controller('tableCtrl', ['$scope', function (scope) {
+    scope.table={
+      date1:"Sep 4",
+      date2:"Sep 5",
+      date3:"Sep 6"
+    };
+    scope.addrow=function(){
+      scope.rowCollection.push({roll:'68001',date1:"Present",total:5});
+
+      var Datastore = require('nedb'),
+      db3 = new Datastore({filename: "database/attendancedb", autoload: true});
+      db3.find({"noc":"KEC BCT A"},function(error,data){
+          console.log(data[0].atn.length);
+          //console.log(data[0].atn[0]);
+          for(var i=1;i<=(data[0]["atn"].length-1);i++){
+                var b={
+                  roll:i,
+                  total:data[0].atn[i-1]
+                }
+                //console.log(i);
+                scope.rowCollection.push(b);
+                console.log(scope.rowCollection)
+                //console.log($scope.data[i-1]);
+                //console.log($scope.data);
+          }
+          scope.$apply();
+        });
+    };
     scope.rowCollection = [
-        {firstName: 'Bruce', lastName: 'Wayne', birthDate: new Date('1987-05-21'), balance: 102},
-        {firstName: 'Diana', lastName: 'Prince', birthDate: new Date('1987-04-25'), balance: -2323.22, email: 'wonderwoman@gmail.com'},
-        {firstName: 'Clark', lastName: 'Kent', birthDate: new Date('1955-08-27'), balance: 42343, email: 'Superman@gmail.com'}
+        {roll:'68001',date1:"Present",total:5}
     ];
 }]).controller('loginCtrl',['$scope','$location','$http',function(scope,location,http){
   scope.login=function(){

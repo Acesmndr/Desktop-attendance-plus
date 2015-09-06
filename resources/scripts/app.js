@@ -17,20 +17,14 @@ var app=angular.module('myApp',['ngRoute','n3-line-chart','myControllers','class
   })
 }])
 .run(function(){
-            var a={};
-            a.timestamp=4427530;
-            a.del=["KEC BCT","KEC Bel"];
-            a.data=[];
-            a.data.push("{'a':'b','c':'d'}");
             message=0;
             var Datastore = require('nedb')
-            , db = new Datastore({ filename: 'aces', autoload: true})
-            db2 = new Datastore({ filename: 'class', autoload: true});
+            , db = new Datastore({ filename: 'aces', autoload: true});
              var doc={ name: 'KEC BCT A 2068',description: 'This is the first class',set:1};
             db.insert(doc, function () { });
             db.find({ set: 1 }, function (err, docs) {
                     for(i in docs){
-                        console.log(docs[i]);
+                        //console.log(docs[i]);
                         //stories.push({'name':docs[i].name,'description':docs[i].description});
                       }
             });

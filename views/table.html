@@ -1,20 +1,20 @@
-<table st-table="rowCollection" class="table table-striped">
+<table st-table="rowCollection" class="table table-striped" ng-init="addrow()">
   <thead>
   <tr>
-    <th>first name</th>
-    <th>last name</th>
-    <th>birth date</th>
-    <th>balance</th>
-    <th>email</th>
+    <th>Roll no</th>
+    <th>{{table.date1}}</th>
+    <th>{{table.date2}}</th>
+    <th>{{table.date3}}</th>
+    <th>Total</th>
   </tr>
   </thead>
   <tbody>
-  <tr ng-repeat="row in rowCollection">
-    <td>{{row.firstName}}</td>
-    <td>{{row.lastName}}</td>
-    <td>{{row.birthDate}}</td>
-    <td>{{row.balance}}</td>
-    <td>{{row.email}}</td>
+  <tr ng-repeat="row in rowCollection"> 
+    <td>{{row.roll}}</td>
+    <td>{{row.date1}}</td>
+    <td>{{row.date2}}</td>
+    <td>{{row.date3}}</td>
+    <td>{{row.total}}</td>
   </tr>
   </tbody>
 </table>
